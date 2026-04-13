@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Qué Cultura Organizacional Eres?</title>
+    <title>¿Qué Cultura Organizacional Eres? - UTEL</title>
     <style>
         :root {
             --primary: #c62828;
+            --accent: #43a047;
         }
 
         * {
@@ -19,114 +20,122 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: linear-gradient(135deg, #0f172a, #1e3a8a);
             min-height: 100vh;
-            padding: 15px;
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
-            max-width: 860px;
-            margin: 0 auto;
+            max-width: 780px;
+            width: 100%;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
             overflow: hidden;
         }
 
         header {
             background: linear-gradient(135deg, var(--primary), #e53935);
             color: white;
-            padding: 35px 20px;
+            padding: 35px 25px;
             text-align: center;
         }
 
         .logo {
-            max-width: 170px;
-            margin-bottom: 12px;
+            max-width: 160px;
+            margin-bottom: 15px;
         }
 
         h1 {
-            font-size: 2.1em;
-            margin-bottom: 8px;
+            font-size: 2.1rem;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 1.15em;
-            opacity: 0.9;
+            font-size: 1.15rem;
+            margin-top: 8px;
+            opacity: 0.95;
         }
 
         .content {
-            padding: 30px 20px;
+            padding: 35px 25px;
         }
 
         .progress {
-            height: 6px;
+            height: 8px;
             background: #e0e0e0;
             border-radius: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(to right, #c62828, #ef5350);
+            background: linear-gradient(to right, var(--primary), #ef5350);
             width: 0%;
-            transition: width 0.4s;
+            transition: width 0.4s ease;
         }
 
         #question-text {
-            font-size: 1.45em;
+            font-size: 1.45rem;
             font-weight: 600;
-            margin-bottom: 25px;
             text-align: center;
+            margin-bottom: 30px;
+            color: #1f2937;
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         .option {
-            padding: 18px 20px;
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
+            padding: 18px 22px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
             border-radius: 14px;
             cursor: pointer;
-            font-size: 1.08em;
-            transition: all 0.3s;
+            font-size: 1.08rem;
+            transition: all 0.3s ease;
+            line-height: 1.4;
         }
 
         .option:hover {
             border-color: #1e88e5;
-            background: #e3f2fd;
+            background: #f0f9ff;
+            transform: translateY(-2px);
         }
 
         .option.selected {
-            background: #e8f5e9;
-            border-color: #43a047;
+            background: #f0fdf4;
+            border-color: var(--accent);
             font-weight: 600;
         }
 
         .navigation {
             display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            gap: 12px;
+            gap: 15px;
+            margin-top: 35px;
         }
 
         button {
             flex: 1;
             padding: 16px;
-            font-size: 1.1em;
+            font-size: 1.1rem;
             font-weight: 600;
             border-radius: 12px;
             border: none;
             cursor: pointer;
+            transition: all 0.3s;
         }
 
         #prev-btn {
             background: #f1f5f9;
-            color: #555;
-            border: 2px solid #ddd;
+            color: #475569;
+            border: 2px solid #cbd5e1;
         }
 
         #next-btn {
@@ -134,36 +143,64 @@
             color: white;
         }
 
+        #next-btn:hover {
+            background: #b71c1c;
+        }
+
+        /* Resultado */
         .result {
             display: none;
             text-align: center;
-            padding: 20px 10px;
+            padding: 30px 20px;
         }
 
         .culture-card {
             background: #f8fafc;
-            padding: 30px 20px;
             border-radius: 18px;
-            margin: 20px 0;
+            padding: 35px 25px;
+            margin: 25px 0;
         }
 
         .emoji {
-            font-size: 4.5em;
+            font-size: 4.8rem;
             margin-bottom: 15px;
         }
 
         @media (min-width: 768px) {
-            h1 { font-size: 2.6em; }
-            .content { padding: 45px 40px; }
-            .option { font-size: 1.15em; padding: 22px 24px; }
-            .emoji { font-size: 5.8em; }
+            .container {
+                max-width: 720px;
+            }
+            h1 {
+                font-size: 2.4rem;
+            }
+            .content {
+                padding: 45px 40px;
+            }
+            .option {
+                font-size: 1.15rem;
+                padding: 20px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.85rem;
+            }
+            #question-text {
+                font-size: 1.3rem;
+            }
+            .option {
+                font-size: 1.05rem;
+                padding: 16px 18px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="https://i.postimg.cc/LJc7x94j/logo-utel.png" alt="Logo UTEL" class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/UTEL_Universidad.png/800px-UTEL_Universidad.png" 
+                 alt="Logo UTEL" class="logo">
             <h1>¿Qué Cultura Organizacional Eres?</h1>
             <p class="subtitle">Empresas Mexicanas Edition 🇲🇽</p>
         </header>
@@ -173,6 +210,7 @@
                 <div id="progress-bar" class="progress-bar"></div>
             </div>
 
+            <!-- Quiz -->
             <div id="quiz">
                 <h2 id="question-text">Pregunta 1 de 5</h2>
                 <div class="options" id="options"></div>
@@ -183,20 +221,21 @@
                 </div>
             </div>
 
+            <!-- Resultado -->
             <div id="result" class="result">
                 <h2>¡Felicidades! Esta es tu cultura:</h2>
                 <div id="culture-result" class="culture-card"></div>
 
                 <h3>¿Qué significa esto?</h3>
-                <p id="description"></p>
+                <p id="description" style="font-size: 1.1rem; margin: 15px 0 25px;"></p>
 
                 <h3>Beneficios principales:</h3>
-                <ul id="benefits"></ul>
+                <ul id="benefits" style="text-align: left; max-width: 420px; margin: 0 auto 25px; font-size: 1.08rem;"></ul>
 
                 <h3>Ejemplos de empresas mexicanas:</h3>
-                <p id="examples" style="font-weight: bold; color: #c62828; font-size: 1.2em;"></p>
+                <p id="examples" style="font-weight: bold; color: var(--primary); font-size: 1.25rem;"></p>
 
-                <button onclick="reiniciarJuego()" style="margin-top: 25px; width: 100%; padding: 18px;">
+                <button onclick="reiniciarJuego()" style="width: 100%; padding: 18px; font-size: 1.15rem;">
                     Realizar el test nuevamente
                 </button>
             </div>
@@ -205,41 +244,51 @@
 
     <script>
         const preguntas = [
-            { pregunta: "En el trabajo, ¿qué valoras más?", 
-              opciones: [
-                { texto: "Sentirme parte de una familia y que me apoyen", valor: "familiar" },
-                { texto: "Poder proponer ideas nuevas y creativas", valor: "creativa" },
-                { texto: "Ganar, competir y obtener buenos resultados", valor: "competitiva" },
-                { texto: "Que todo esté bien organizado y con reglas claras", valor: "estructurada" }
-            ]},
-            { pregunta: "Cuando hay un problema en la empresa, ¿qué prefieres?", 
-              opciones: [
-                { texto: "Que todos nos reunamos y lo resolvamos juntos como equipo", valor: "familiar" },
-                { texto: "Probar soluciones nuevas aunque sean arriesgadas", valor: "creativa" },
-                { texto: "Que se tome la decisión que más beneficie las ventas o ganancias", valor: "competitiva" },
-                { texto: "Seguir el procedimiento establecido y respetar la cadena de mando", valor: "estructurada" }
-            ]},
-            { pregunta: "¿Cómo te gustaría que sea tu jefe?", 
-              opciones: [
-                { texto: "Como un líder cercano, que se preocupe por mí", valor: "familiar" },
-                { texto: "Alguien que motive la innovación y las ideas locas", valor: "creativa" },
-                { texto: "Alguien exigente que me impulse a dar lo mejor", valor: "competitiva" },
-                { texto: "Alguien claro que dé instrucciones precisas y justas", valor: "estructurada" }
-            ]},
-            { pregunta: "En una empresa ideal, ¿qué es más importante?", 
-              opciones: [
-                { texto: "La lealtad y el buen ambiente entre compañeros", valor: "familiar" },
-                { texto: "La creatividad y adaptarse rápido a los cambios", valor: "creativa" },
-                { texto: "Ser mejor que la competencia y crecer constantemente", valor: "competitiva" },
-                { texto: "La eficiencia, el orden y el control de procesos", valor: "estructurada" }
-            ]},
-            { pregunta: "Cuando hay un cambio grande en la empresa, ¿cómo reaccionas?", 
-              opciones: [
-                { texto: "Me preocupa si afecta al equipo y las relaciones", valor: "familiar" },
-                { texto: "¡Me emociona! Es una oportunidad para innovar", valor: "creativa" },
-                { texto: "Lo veo como una oportunidad para ganar más mercado", valor: "competitiva" },
-                { texto: "Prefiero que se planee bien y se comunique claramente", valor: "estructurada" }
-            ]}
+            {
+                pregunta: "En el trabajo, ¿qué valoras más?",
+                opciones: [
+                    { texto: "Sentirme parte de una familia y que me apoyen", valor: "familiar" },
+                    { texto: "Poder proponer ideas nuevas y creativas", valor: "creativa" },
+                    { texto: "Ganar, competir y obtener buenos resultados", valor: "competitiva" },
+                    { texto: "Que todo esté bien organizado y con reglas claras", valor: "estructurada" }
+                ]
+            },
+            {
+                pregunta: "Cuando hay un problema en la empresa, ¿qué prefieres?",
+                opciones: [
+                    { texto: "Que todos nos reunamos y lo resolvamos juntos como equipo", valor: "familiar" },
+                    { texto: "Probar soluciones nuevas aunque sean arriesgadas", valor: "creativa" },
+                    { texto: "Que se tome la decisión que más beneficie las ventas o ganancias", valor: "competitiva" },
+                    { texto: "Seguir el procedimiento establecido y respetar la cadena de mando", valor: "estructurada" }
+                ]
+            },
+            {
+                pregunta: "¿Cómo te gustaría que sea tu jefe?",
+                opciones: [
+                    { texto: "Como un líder cercano, que se preocupe por mí", valor: "familiar" },
+                    { texto: "Alguien que motive la innovación y las ideas locas", valor: "creativa" },
+                    { texto: "Alguien exigente que me impulse a dar lo mejor", valor: "competitiva" },
+                    { texto: "Alguien claro que dé instrucciones precisas y justas", valor: "estructurada" }
+                ]
+            },
+            {
+                pregunta: "En una empresa ideal, ¿qué es más importante?",
+                opciones: [
+                    { texto: "La lealtad y el buen ambiente entre compañeros", valor: "familiar" },
+                    { texto: "La creatividad y adaptarse rápido a los cambios", valor: "creativa" },
+                    { texto: "Ser mejor que la competencia y crecer constantemente", valor: "competitiva" },
+                    { texto: "La eficiencia, el orden y el control de procesos", valor: "estructurada" }
+                ]
+            },
+            {
+                pregunta: "Cuando hay un cambio grande en la empresa, ¿cómo reaccionas?",
+                opciones: [
+                    { texto: "Me preocupa si afecta al equipo y las relaciones", valor: "familiar" },
+                    { texto: "¡Me emociona! Es una oportunidad para innovar", valor: "creativa" },
+                    { texto: "Lo veo como una oportunidad para ganar más mercado", valor: "competitiva" },
+                    { texto: "Prefiero que se planee bien y se comunique claramente", valor: "estructurada" }
+                ]
+            }
         ];
 
         let respuestas = [];
@@ -277,12 +326,12 @@
         }
 
         function actualizarBotones() {
-            document.getElementById("next-btn").style.display = respuestas[preguntaActual] ? "block" : "none";
+            document.getElementById("next-btn").style.display = respuestas[preguntaActual] !== undefined ? "block" : "none";
             document.getElementById("prev-btn").style.display = preguntaActual > 0 ? "block" : "none";
         }
 
         function nextQuestion() {
-            if (respuestas[preguntaActual]) {
+            if (respuestas[preguntaActual] !== undefined) {
                 preguntaActual++;
                 if (preguntaActual < preguntas.length) {
                     mostrarPregunta();
@@ -301,45 +350,49 @@
 
         function calcularCultura() {
             const conteo = { familiar: 0, creativa: 0, competitiva: 0, estructurada: 0 };
-            respuestas.forEach(r => conteo[r]++);
+            respuestas.forEach(res => conteo[res]++);
             return Object.keys(conteo).reduce((a, b) => conteo[a] > conteo[b] ? a : b);
         }
 
         function mostrarResultado() {
             document.getElementById("quiz").style.display = "none";
-            const result = document.getElementById("result");
-            result.style.display = "block";
+            document.getElementById("result").style.display = "block";
 
             const tipo = calcularCultura();
-            let titulo = "", emoji = "", desc = "", beneficios = [], ejemplos = "";
+            let titulo = "", emoji = "", descripcion = "", beneficios = [], ejemplos = "";
 
-            if (tipo === "familiar") {
-                titulo = "Cultura Familiar"; emoji = "👨‍👩‍👧‍👦";
-                desc = "Es como trabajar en una gran familia. Se valora la confianza, el apoyo y la lealtad.";
-                beneficios = ["Alta motivación", "Baja rotación", "Buen clima laboral"];
-                ejemplos = "Grupo Bimbo, FEMSA, Liverpool";
-            } else if (tipo === "creativa") {
-                titulo = "Cultura Creativa"; emoji = "💡";
-                desc = "Ambiente que fomenta la creatividad y la innovación constante.";
-                beneficios = ["Alta innovación", "Adaptación rápida", "Ambiente dinámico"];
-                ejemplos = "Kavak, Clip, Cinépolis";
-            } else if (tipo === "competitiva") {
-                titulo = "Cultura Competitiva"; emoji = "🏆";
-                desc = "Enfocada en resultados, competencia y alto desempeño.";
-                beneficios = ["Crecimiento rápido", "Alta productividad", "Recompensas por metas"];
-                ejemplos = "América Móvil, Grupo Salinas";
-            } else {
-                titulo = "Cultura Estructurada"; emoji = "📋";
-                desc = "Procesos claros, orden y estabilidad.";
-                beneficios = ["Estabilidad", "Eficiencia", "Roles bien definidos"];
-                ejemplos = "Banorte, Cemex";
+            switch(tipo) {
+                case "familiar":
+                    titulo = "Cultura Familiar"; emoji = "👨‍👩‍👧‍👦";
+                    descripcion = "Es como trabajar en una gran familia. Se valora la confianza, el apoyo mutuo y la lealtad.";
+                    beneficios = ["Alta motivación y compromiso", "Baja rotación de personal", "Buen clima laboral"];
+                    ejemplos = "Grupo Bimbo, FEMSA (OXXO), Liverpool";
+                    break;
+                case "creativa":
+                    titulo = "Cultura Creativa"; emoji = "💡";
+                    descripcion = "Se fomenta la creatividad, las ideas nuevas y la adaptación rápida.";
+                    beneficios = ["Alta innovación", "Ambiente dinámico", "Adaptación al cambio"];
+                    ejemplos = "Kavak, Clip, Cinépolis";
+                    break;
+                case "competitiva":
+                    titulo = "Cultura Competitiva"; emoji = "🏆";
+                    descripcion = "Enfocada en resultados, competencia y alto desempeño.";
+                    beneficios = ["Crecimiento rápido", "Alta productividad", "Recompensas por metas"];
+                    ejemplos = "América Móvil, Grupo Salinas";
+                    break;
+                case "estructurada":
+                    titulo = "Cultura Estructurada"; emoji = "📋";
+                    descripcion = "Todo está bien organizado, con procesos claros y estabilidad.";
+                    beneficios = ["Estabilidad laboral", "Eficiencia operativa", "Claridad en roles"];
+                    ejemplos = "Banorte, Cemex";
+                    break;
             }
 
             document.getElementById("culture-result").innerHTML = `
                 <span class="emoji">${emoji}</span>
-                <h2>${titulo}</h2>
+                <h2 style="color: var(--primary); margin: 15px 0;">${titulo}</h2>
             `;
-            document.getElementById("description").textContent = desc;
+            document.getElementById("description").textContent = descripcion;
 
             const ul = document.getElementById("benefits");
             ul.innerHTML = "";
